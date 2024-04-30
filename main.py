@@ -72,7 +72,8 @@ def play():
         player_y += player_speed
     
     pygame.draw.circle(screen, (255, 0, 0), (int(player_x - camera_x), int(player_y - camera_y)), 20)
-
+    ground_list.draw(screen)
+    
 # Iniciar la música del menú
 menu_music.play(-1)
 
@@ -111,9 +112,6 @@ while running:
     screen.fill((128, 0, 128))  # purple
 
     # RENDER YOUR GAME HERE
-    pygame.draw.circle(screen, (255, 0, 0), (int(player_x - camera_x), int(player_y - camera_y)), 20)
-    
-    ground_list.draw(screen)
 
     if menu:
         draw_menu()
