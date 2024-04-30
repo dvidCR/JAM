@@ -1,8 +1,12 @@
 import pygame
+from Level import Level
 
 pygame.init()
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1080
+SCREEN_HEIGHT = 960
+
+worldx = 800
+worldy = 600
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
@@ -16,6 +20,18 @@ player_speed = 5
 camera_x = 0
 camera_y = 0
 
+# defino el tamaño de los 
+gloc = []
+tx = 64
+ty = 64
+
+i = 0
+while i <= (worldx / tx) + tx:
+    gloc.append(i * tx)
+    i = i + 1
+
+ground_list = Level.ground(1, gloc, tx, ty)
+#plat_list = Level.platform(1, tx, ty)
 
 
 while running:
@@ -45,6 +61,8 @@ while running:
 
     # RENDER YOUR GAME HERE
     pygame.draw.circle(screen, (255, 0, 0), (int(player_x - camera_x), int(player_y - camera_y)), 20)
+    
+    ground_list.draw(screen)
 
     # flip() the display to put your work on screen
     pygame.display.flip()
